@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brendan's Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: #1a1a1a;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #0f3460 0%, #1a5490 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #f0f8ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f3460 0%, #1a5490 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .container {
+            padding: 0 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ffffff;
+        }
+
+        /* About Section */
+        .about {
+            background: #1e1e1e;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .avatar {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0f3460 0%, #1a5490 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #2a2a2a;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: #3a3a3a;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: #4db8ff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #555;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #e0e0e0;
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-level {
+            background: #0f3460;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Experience Section */
+        .experience {
+            background: #1e1e1e;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #3a3a3a;
+            border-radius: 10px;
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-details p {
+            color: #4db8ff;
+            font-weight: 500;
+        }
+
+        .experience-timeline {
+            margin-bottom: 4rem;
+        }
+
+        .experience-item {
+            background: #3a3a3a;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #4db8ff;
+        }
+
+        .experience-header {
+            margin-bottom: 1rem;
+        }
+
+        .experience-header h3 {
+            color: #4db8ff;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .company {
+            color: #e0e0e0;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .duration {
+            color: #999;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .experience-details {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-details li {
+            color: #e0e0e0;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-details li:before {
+            content: "▸";
+            color: #4db8ff;
+            position: absolute;
+            left: 0;
+        }
+
+        .education-section {
+            margin-top: 4rem;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .education-item {
+            background: #3a3a3a;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .education-item h3 {
+            color: #4db8ff;
+            margin-bottom: 1rem;
+        }
+
+        .education-status {
+            color: #4db8ff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-details, .education-year {
+            color: #e0e0e0;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-list {
+            list-style: none;
+            padding: 0;
+            color: #e0e0e0;
+        }
+
+        .cert-list li {
+            margin-bottom: 0.3rem;
+        }
+
+        .transferable-skills {
+            margin-top: 4rem;
+        }
+
+        .skills-transfer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .transfer-category {
+            background: #3a3a3a;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .transfer-category h3 {
+            color: #4db8ff;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .transfer-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .transfer-category li {
+            color: #e0e0e0;
+            margin-bottom: 0.4rem;
+            padding-left: 1rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .transfer-category li:before {
+            content: "•";
+            color: #4db8ff;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-transfer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Brendan's Portfolio</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Hi, I'm Brendan! An aspiring data scientist currently pursuing my education in data science. With a strong background in hospitality management and customer service, I bring analytical thinking and problem-solving skills to turn data into actionable insights.</p>
+            <a href="#about" class="cta-button">Learn More About Me</a>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="avatar">B</div>
+                </div>
+                <div class="about-text">
+                    <p>I'm currently pursuing my education in data science, transitioning from a successful career in hospitality management. With 9+ years of experience in customer service and restaurant operations, I've developed strong analytical thinking, problem-solving skills, and the ability to work under pressure - qualities that translate perfectly to data science.</p>
+                    
+                    <p>My journey into data science began with a fascination for how data can tell stories and drive meaningful business decisions. I'm passionate about leveraging statistical analysis, machine learning, and data visualization to uncover insights that create real impact for organizations.</p>
+                    
+                    <p>When I'm not studying data science concepts or working on projects, you can find me exploring new technologies, contributing to open-source projects, or applying my analytical mindset to real-world problems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>My Data Science Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span>Python</span>
+                            <span class="skill-level">Expert</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>R</span>
+                            <span class="skill-level">Advanced</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>SQL</span>
+                            <span class="skill-level">Expert</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Scala</span>
+                            <span class="skill-level">Intermediate</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Machine Learning</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span>Scikit-learn</span>
+                            <span class="skill-level">Expert</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>TensorFlow</span>
+                            <span class="skill-level">Advanced</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>PyTorch</span>
+                            <span class="skill-level">Advanced</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Deep Learning</span>
+                            <span class="skill-level">Advanced</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Data Visualization</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span>Tableau</span>
+                            <span class="skill-level">Expert</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Power BI</span>
+                            <span class="skill-level">Advanced</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Matplotlib/Seaborn</span>
+                            <span class="skill-level">Expert</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Plotly</span>
+                            <span class="skill-level">Advanced</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Big Data & Cloud</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span>Apache Spark</span>
+                            <span class="skill-level">Advanced</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>AWS</span>
+                            <span class="skill-level">Intermediate</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Docker</span>
+                            <span class="skill-level">Intermediate</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Hadoop</span>
+                            <span class="skill-level">Intermediate</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Statistics & Analysis</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span>Statistical Modeling</span>
+                            <span class="skill-level">Expert</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Hypothesis Testing</span>
+                            <span class="skill-level">Expert</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Time Series Analysis</span>
+                            <span class="skill-level">Advanced</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>A/B Testing</span>
+                            <span class="skill-level">Advanced</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Tools & Platforms</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span>Jupyter Notebooks</span>
+                            <span class="skill-level">Expert</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Git/GitHub</span>
+                            <span class="skill-level">Advanced</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>MongoDB</span>
+                            <span class="skill-level">Intermediate</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Apache Airflow</span>
+                            <span class="skill-level">Intermediate</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            
+            <div class="contact-info">
+                <div class="contact-details">
+                    <p><strong>📧 Email:</strong> brendangwilliams17@gmail.com</p>
+                    <p><strong>📱 Phone:</strong> +1 360 723 2673</p>
+                    <p><strong>📍 Location:</strong> Vancouver, WA 98665</p>
+                </div>
+            </div>
+
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Bartender/Server</h3>
+                        <span class="company">Compass Group, Ilani Casino</span>
+                        <span class="duration">March 2022 - Present</span>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Prepare drinks in timely manner for high-volume casino environment</li>
+                        <li>Build relationships and rapport with high-end customers</li>
+                        <li>Manage bar operations including cleaning, stocking, and closing procedures</li>
+                        <li>Provide exceptional service for premium events and VIP patrons</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Server/Bartender & Shift Lead</h3>
+                        <span class="company">Buffalo Wild Wings</span>
+                        <span class="duration">March 2017 - January 2022</span>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Led shifts as shift supervisor, managing team operations and workflow</li>
+                        <li>Handled inventory management and cash counting responsibilities</li>
+                        <li>Delivered excellent customer service in fast-paced environment</li>
+                        <li>Maintained high standards for cleanliness and food safety</li>
+                        <li>Built strong customer relationships and repeat business</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Server</h3>
+                        <span class="company">Applebee's</span>
+                        <span class="duration">September 2016 - March 2017</span>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Provided excellent customer service and processed orders accurately</li>
+                        <li>Managed cash handling and to-go orders efficiently</li>
+                        <li>Memorized extensive menu and followed company procedures</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Line Cook</h3>
+                        <span class="company">Joe's Crab Shack</span>
+                        <span class="duration">July 2015 - July 2016</span>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Ensured timely food preparation in high-volume kitchen</li>
+                        <li>Maintained food quality standards and safety protocols</li>
+                        <li>Handled food preparation and kitchen organization</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Early Career Roles</h3>
+                        <span class="company">Olive Garden, Papa Murphy's</span>
+                        <span class="duration">2013 - 2015</span>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Gained foundational restaurant experience in various roles</li>
+                        <li>Developed strong work ethic and customer service skills</li>
+                        <li>Learned cash handling, food preparation, and team collaboration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="education-section">
+                <h2>Education & Certifications</h2>
+                <div class="education-grid">
+                    <div class="education-item">
+                        <h3>Data Science Education</h3>
+                        <p class="education-status">Currently Pursuing</p>
+                        <p>Focused on statistical analysis, machine learning, and data visualization</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>High School Diploma</h3>
+                        <p class="education-details">Union High School, Vancouver, WA</p>
+                        <p class="education-year">2009 - 2013</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>Professional Certifications</h3>
+                        <ul class="cert-list">
+                            <li>ServSafe Certification</li>
+                            <li>Food Handler Certification</li>
+                            <li>Valid Driver's License</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="transferable-skills">
+                <h2>Transferable Skills from Hospitality</h2>
+                <div class="skills-transfer-grid">
+                    <div class="transfer-category">
+                        <h3>Leadership & Management</h3>
+                        <ul>
+                            <li>Team supervision (3+ years)</li>
+                            <li>Shift management</li>
+                            <li>Training and mentoring</li>
+                            <li>Conflict resolution</li>
+                        </ul>
+                    </div>
+                    <div class="transfer-category">
+                        <h3>Analytical Thinking</h3>
+                        <ul>
+                            <li>Inventory management</li>
+                            <li>Profit & loss analysis</li>
+                            <li>Process optimization</li>
+                            <li>Problem-solving under pressure</li>
+                        </ul>
+                    </div>
+                    <div class="transfer-category">
+                        <h3>Communication</h3>
+                        <ul>
+                            <li>Customer relationship building</li>
+                            <li>Cross-functional collaboration</li>
+                            <li>Presentation skills</li>
+                            <li>Active listening</li>
+                        </ul>
+                    </div>
+                    <div class="transfer-category">
+                        <h3>Technical Proficiency</h3>
+                        <ul>
+                            <li>POS systems</li>
+                            <li>Time management</li>
+                            <li>Quality assurance</li>
+                            <li>Multi-tasking abilities</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                const headerOffset = 80;
+                const elementPosition = target.offsetTop;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add active class to navigation items on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
